@@ -285,8 +285,6 @@ function OrgEvents() {
                 <img
                   src={
                       event.image
-                        ? `http://localhost:5000${event.image}`
-                        : "https://placehold.co/600x400"
                     }
                   alt={event.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"

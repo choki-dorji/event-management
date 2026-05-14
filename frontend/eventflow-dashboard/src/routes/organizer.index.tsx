@@ -435,8 +435,6 @@ function OrganizerHome() {
                     <img
                       src={
                         e.image
-                          ? `http://localhost:5000${e.image}`
-                          : "https://placehold.co/100x100"
                       }
 
                       alt=""

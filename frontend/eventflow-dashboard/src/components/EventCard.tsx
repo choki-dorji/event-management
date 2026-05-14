@@ -12,11 +12,7 @@ export function EventCard({ event, to }: { event: MockEvent; to?: string }) {
       <Card className="overflow-hidden border-border/60 shadow-card hover:shadow-glow transition-all hover:-translate-y-1 h-full">
         <div className="relative h-44 overflow-hidden">
           <img
-            src={
-              event.image
-                        ? `http://localhost:5000${event.image}`
-                        : "https://placehold.co/600x400"
-            }
+            src={event.image || "https://placehold.co/300x300"}
             alt={event.title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />

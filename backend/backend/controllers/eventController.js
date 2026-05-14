@@ -13,7 +13,7 @@ const createEvent = async (req, res) => {
       category
     } = req.body;
     const image = req.file
-  ? `/uploads/${req.file.filename}`
+  ? req.file.path
   : "";
 
     const event = await Event.create({
