@@ -1,0 +1,12 @@
+./node_modules
+
+# Logs
+logs
+*.log
+
+./frontend/eventflow-dashboard/node_modules
+./backend/backend/node_modules
+
+# env
+./frontend/eventflow-dashboard/.env
+./backend/backend/.env
