@@ -5,7 +5,10 @@ const {
   loginUser,
   getProfile,
   updateProfile,
-  changePassword
+  changePassword,
+  getAllUsers,
+  updateUserRole,
+  deleteUser,
 } = require("../controllers/authController");
 
 const {
@@ -29,5 +32,10 @@ router.put("/profile", protect, updateProfile);
 
 router.put("/change-password", protect, changePassword);
 
+router.get("/users", protect, getAllUsers);
+
+router.put("/users/:id/role", protect, updateUserRole);
+
+router.delete("/users/:id", protect, deleteUser);
 
 module.exports = router;

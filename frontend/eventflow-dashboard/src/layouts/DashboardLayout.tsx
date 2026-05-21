@@ -38,7 +38,6 @@ const NAV: Record<string, NavItem[]> = {
     { to: "/admin", label: "Overview", icon: LayoutDashboard },
     { to: "/admin/users", label: "Users", icon: Users },
     { to: "/admin/events", label: "Events", icon: Calendar },
-    { to: "/admin/analytics", label: "Analytics", icon: BarChart3 },
     { to: "/admin/roles", label: "Roles", icon: Shield },
     { to: "/admin/announcements", label: "Announcements", icon: Megaphone },
     { to: "/profile", label: "Profile", icon: UserCog },

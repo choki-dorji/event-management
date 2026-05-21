@@ -84,6 +84,12 @@ export const authApi = {
     newPassword: string;
   }) =>
     api.put("/auth/change-password", data),
+  getAllUsers: () =>
+    api.get("/auth/users"),
+  updateUserRole: (id: string, role: string) =>
+    api.put(`/auth/users/${id}/role`, { role }),
+  deleteUser: (id: string) =>
+    api.delete(`/auth/users/${id}`),
 };
 
 

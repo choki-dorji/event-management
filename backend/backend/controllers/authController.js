@@ -159,7 +159,61 @@ const changePassword = async (req, res) => {
     });
   }
 };
+// allusers
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
 
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+// update role
+const updateUserRole = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    user.role = req.body.role;
+    await user.save();
+
+    res.status(200).json({
+      message: "Role updated successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+// remove
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+    await User.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   registerUser,
@@ -167,4 +221,7 @@ module.exports = {
   getProfile,
   updateProfile,
   changePassword,
+  getAllUsers,
+  updateUserRole,
+  deleteUser,
 };
