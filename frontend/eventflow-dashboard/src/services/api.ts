@@ -157,6 +157,9 @@ export const attendanceApi = {
     api.get(
       `/attendance/event/${eventId}`
     ),
+    getOrganizerAttendance: () =>
+    api.get("/attendance/organizer"),
+
 };
 
 

@@ -66,7 +66,7 @@ function LoginPage() {
         </Link>
         <div className="relative">
           <h2 className="text-4xl font-bold leading-tight">"Eventory turned our chaotic check-in into a 5-second tap."</h2>
-          <p className="mt-4 text-primary-foreground/80">— Olivia, Cultural Committee Lead</p>
+          <p className="mt-4 text-primary-foreground/80">Gaki, Team Lead</p>
         </div>
         <div className="relative text-sm text-primary-foreground/70">© {new Date().getFullYear()} Eventory</div>
       </div>

@@ -1,0 +1,1 @@
+import{j as n,D as o,ac as e}from"./index-CQ32-wpD.js";import{P as t}from"./ProtectedRoute-C3uj6OZW.js";import{d as s}from"./mockData-BFhdLS4l.js";const i=()=>n.jsx(t,{roles:["admin"],children:n.jsx(o,{children:n.jsx(e,{initial:s,title:"System announcements",description:"Send platform-wide announcements."})})});export{i as component};
