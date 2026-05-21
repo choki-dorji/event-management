@@ -101,7 +101,6 @@ function MyEvents() {
 
       const res =
         await registrationsApi.myEvents();
-
       setMyEvents(res.data);
 
     } catch (error) {
@@ -116,6 +115,7 @@ function MyEvents() {
       setLoading(false);
     }
   };
+  console.log("My Events:", myEvents);
 
 
   return (
@@ -201,8 +201,7 @@ function TicketCard({
         <h3 className="font-semibold mt-2 leading-tight">
           {event.title}
         </h3>
-
-
+        
         <div className="text-xs text-muted-foreground mt-2 space-y-1">
 
           <div className="flex items-center gap-1.5">
@@ -281,6 +280,9 @@ function TicketCard({
 
                   <div className="font-semibold">
                     {event.title}
+                  </div>
+                  <div className="font-semibold">
+                    Ticket: {registration.ticketId}
                   </div>
 
                   <div className="text-xs text-muted-foreground">

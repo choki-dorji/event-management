@@ -148,6 +148,8 @@ export const registrationsApi = {
     api.get("/registrations/my-events"),
   all: () =>
   api.get("/registrations/all"),
+  byOrganizer: () =>
+    api.get("/registrations/organizer"),
 };
 
 
