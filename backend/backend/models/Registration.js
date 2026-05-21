@@ -13,6 +13,10 @@ const registrationSchema = new mongoose.Schema(
       ref: "Event",
       required: true,
     },
+    ticketId: {
+        type: String,
+        unique: true,
+      },
 
     attendanceStatus: {
       type: Boolean,

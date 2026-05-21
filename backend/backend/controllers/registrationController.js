@@ -1,6 +1,7 @@
 const Registration = require("../models/Registration");
 const Event = require("../models/Event");
 const QRCode = require("qrcode");
+const crypto = require("crypto");
 
 
 // REGISTER FOR EVENT
@@ -33,11 +34,18 @@ const registerForEvent = async (req, res) => {
     const qrData = `USER:${req.user.id}-EVENT:${eventId}`;
 
     const qrCode = await QRCode.toDataURL(qrData);
+    const ticketId =
+      "TKT-" +
+      crypto
+        .randomBytes(4)
+        .toString("hex")
+        .toUpperCase();
 
     const registration = await Registration.create({
       user: req.user.id,
       event: eventId,
       qrCode,
+      ticketId,
     });
 
     res.status(201).json({

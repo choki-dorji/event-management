@@ -2,34 +2,99 @@ const Registration = require("../models/Registration");
 const Event = require("../models/Event");
 
 // MARK ATTENDANCE
-const markAttendance = async (req, res) => {
-  try {
-    const { registrationId } = req.body;
+const markAttendance =
+  async (req, res) => {
 
-    const registration =
-      await Registration.findById(registrationId);
+    try {
 
-    if (!registration) {
-      return res.status(404).json({
-        message: "Registration not found",
+      const {
+        registrationId,
+        ticketId,
+      } = req.body;
+
+      let registration;
+
+      // find by registration id
+      if (registrationId) {
+
+        registration =
+          await Registration.findById(
+            registrationId
+          );
+      }
+
+      // find by ticket id
+      else if (ticketId) {
+
+        registration =
+          await Registration.findOne({
+            ticketId,
+          });
+      }
+
+      // neither provided
+      else {
+
+        return res.status(400).json({
+          message:
+            "registrationId or ticketId required",
+        });
+      }
+
+      // not found
+      if (!registration) {
+
+        return res.status(404).json({
+          message:
+            "Registration not found",
+        });
+      }
+
+      // already attended
+      if (
+        registration.attendanceStatus
+      ) {
+
+        return res.status(400).json({
+          message:
+            "Attendance already marked",
+        });
+      }
+
+      registration.attendanceStatus =
+        true;
+
+      registration.attendedAt =
+        new Date();
+
+      await registration.save();
+
+      // populate before return
+      await registration.populate(
+        "user",
+        "name email"
+      );
+
+      await registration.populate(
+        "event",
+        "title date"
+      );
+
+      res.status(200).json({
+        message:
+          "Attendance marked successfully",
+
+        registration,
+      });
+
+    } catch (error) {
+
+      res.status(500).json({
+        message:
+          error.message,
       });
     }
-
-    registration.attendanceStatus = true;
-
-    await registration.save();
-
-    res.status(200).json({
-      message: "Attendance marked",
-      registration,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
 };
-
 
 // GET EVENT ATTENDANCE
 const getAttendanceByEvent = async (req, res) => {
