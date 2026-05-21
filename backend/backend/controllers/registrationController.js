@@ -125,10 +125,34 @@ const getAllRegistrations =
       });
     }
 };
+// get registration by organizer
+const getRegistrationsByOrganizer = async (req, res) => {
+  try {
+    const organizerId = req.user.id;
+
+    const registrations = await Registration.find({
+      // find registrations where event's organizer matches
+      event: {
+        $in: await Event.find({
+          organizer: organizerId,
+        }).select("_id"),
+      },
+    })
+      .populate("user", "name email")
+      .populate("event", "title date");
+
+    res.status(200).json(registrations);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   registerForEvent,
   myRegistrations,
   cancelRegistration,
     getAllRegistrations,
+  getRegistrationsByOrganizer,
 };
