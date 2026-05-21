@@ -3,6 +3,7 @@ const express = require("express");
 const {
   markAttendance,
   getAttendanceByEvent,
+   getOrganizerAttendance,
 } = require("../controllers/attendanceController");
 
 const {protect} = require("../middleware/authMiddleware");
@@ -21,9 +22,15 @@ router.post(
 
 router.get(
   "/event/:eventId",
-  protect,
-  authorize("admin", "organizer"),
+  
   getAttendanceByEvent
+);
+
+router.get(
+  "/organizer",
+  protect,
+  authorize("organizer"),
+  getOrganizerAttendance
 );
 
 
